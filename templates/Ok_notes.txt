@@ -1,0 +1,23 @@
+JavaScript:		-> Scripting Language
+				-> Light weight programming language
+				-> Based ECMA Scripting (ES)
+				-> Perform client side validation
+				-> Add dynamism to static pages
+				-> Interpreter based language
+				-> Platform independent
+				-> Developed by Netscape
+				-> Browsers contains build-in parsers which parse JS code.
+				
+Ways to Write JS:
+	-> HTML embedded
+	-> External .js file
+	
+-> No fixed data types
+-> Supports varient data types.
+
+Javascript arrays: 
+					var x = [10,20,"apple"]
+					var x = Array(10,20,"apple")
+					
+Supports : if-else conditional statement
+Supports : while, do-while and both version of for-loop

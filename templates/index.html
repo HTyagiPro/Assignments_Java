@@ -1,0 +1,281 @@
+<!doctype HTML>
+<Html>
+<head>
+	<title>Form</title>
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+	#concent{
+	text-align: justify;
+	width: 300px;
+	}
+
+	.registration{
+		text-align: justify;
+		width: 300px;
+		margin-left: 40%;
+		margin-top: 70px;	
+	}
+	table, th, td,tr{
+		border: 0px;
+		cellpadding:20px;
+		cellspacing: 20px;
+	}
+
+	</style>
+		
+	
+	<script type="text/javascript">
+		/*
+		function sum(x=1,y=-1){
+		return x+y;
+		}
+		
+		var pow = (x,n) =>{
+		var res = 1;
+		for(;n>0;n--)
+			res *= x;
+		return res;
+		}
+		document.write(pow(10,3));
+		
+		*/
+		/*
+		var s = new Set();
+		s.add(5);
+		s.add(13);
+		s.add(19);
+		s.add(13);
+		s.add("apple");
+		document.write(s+"<br>");
+		document.write(s.size+ "<br>");
+		document.write(s.has(19)+ "<br>");
+		
+		for (var i of s)
+			document.write(i+"<br>");
+		
+		*/
+		/*
+		var map = new Map();
+		map.set("Fruit", "Apple");
+		map.set("Vegetable", "Carrot");
+		map.set("number", 1234);
+		map.set("Answer", "false");
+		map.set("number", 12534);
+		
+		
+		
+		for (let i of map.keys())
+			document.write( map.get(i)+"<br>");
+		
+		for (let i of map.entries())
+			document.write( i+"<br>");
+		*/
+		function msg(){
+		var fName = parseInt(document.getElementById("fnam").value);
+		var lName = parseInt(document.getElementById("lnam").value);
+		alert("Hello " + parseInt(fName +  lName));
+		}
+		
+		
+		
+		
+	</script>
+	
+	
+</head>
+<body onload="fname.focus()" style="color:white; background-image:url('images\\images.jpg'); transparent:o; ; font-style: italic; font-weight:bold;" >
+	<h1 style="margin-left: 40%; margin-top: 100px">Register Here!!!</h1>
+	<form class="registration" >
+			<table>
+			<th>
+				<td>
+					<caption>Please Register below.</caption>
+				</td>
+			</th>
+			<tr>
+				<td>
+					<label>First Name</label>
+				</td>
+				<td>	
+					<input type="text" id="fnam" placeholder="First Name" required>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Last Name</label>
+				</td>
+				<td>
+					<input type="text" id="lnam" placeholder="Last Name" required>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Gender</label>
+				</td>
+				<td>
+					<input type="radio" name="Gender">Male</input>
+					<input type="radio" name="Gender">Female</input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Address</label>
+				</td>
+				<td>
+					<textarea placeholder="Address">Address</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Pincode</label>
+				</td>
+				<td>
+					<input type="text" placeholder="6- digit only" required>
+				<td>
+			</tr>
+			<tr>
+				<td>
+					<label>Contact No.</label>
+				</td>
+				<td>	
+					<input type="number" placeholder="10- digit only" required maxlength=12>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>E-mail</label>
+				</td>
+				<td>
+					<input type="email" placeholder="user@example.com" required>
+				</td>
+			</tr>
+			</table>
+			<p id="concent">
+			<label>Decleration : &nbsp;</label>
+			
+			
+			I agree to be a participant in this study. I acknowledge that I am aware of what this study involves, that I am at least 18 years old, and that I have received a copy of this Informed Consent form.</p>
+			<input id="check" type="checkbox"> I agree.</input><br>
+			&nbsp; &nbsp;&nbsp;&nbsp;
+			<input type='submit' value= "Click Me" onclick="msg()">
+	</form>
+	<script type="text/javascript">
+	/*
+	var emp = {	"e_id" : 101,
+				"e_name" : "Ajay Saxena",
+				"e_sal" : 62500,
+				"deptNo" : 106			
+				};
+				
+	var st = "Ajay Saxena";
+	var arr = [10,20,30,50];
+	arr.push(40);
+	arr.push(60);
+	arr.push(70);
+	arr.splice(3,0,40);
+	
+	document.write(arr);
+	*/
+	
+	
+	
+	function power(x,n){
+		var res = 1;
+		for(;n>0;n--)
+			res *= x;
+		return res;
+	}
+	
+	//document.write(sum());
+	
+	/*
+	document.write("Emp_Id : "+emp.e_id+"<br>");
+	document.write("Emp_Name : "+emp.e_name+"<br>");
+	document.write("Emp_Id : "+emp.e_sal+"<br>");
+	document.write("Dept_Name :"+emp.deptNo+"<br>");
+	*/
+	/*
+	var dobj = new Date();
+		document.write(dobj.getDate()+"-"+ (dobj.getMonth()+1)+"-"+(dobj.getYear()+1900));
+		document.write("<br>"+dobj.getHours()+" : "+ dobj.getMinutes()+" : "+dobj.getSeconds());
+	*/
+	
+	function cal(t1,t2, t3,bval){
+	if (bval == "Add")
+		t3.value = parseInt(t1)+parseInt(t2);
+	else if	(bval == "Sub")
+		t3.value = parseInt(t1)-parseInt(t2);
+	else if	(bval == "Multiply")
+		t3.value = parseInt(t1)*parseInt(t2);
+	else if	(bval == "Divide")
+		t3.value = parseInt(t1)/parseInt(t2);
+		
+
+	}
+	function validateTextBox(t1, td1 ){
+		if(t1.value.length ==0)
+			td1.hidden = false;
+		else
+			td1.hidden = true;
+	}
+	
+	
+	
+	
+	</script>
+	
+	<form>
+	<table>
+	<tr>
+				<td>
+					<label>First Number<span style = "color:red">*</span></label>
+				</td>
+				<td>	
+					<input type="text" id="fname" placeholder="First" required onkeyup="validateTextBox(this,td1)" >
+				</td>
+				<td id="td1" onblur="setFocus(this)">
+					Cannot be empty.
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>Second Number<span style = "color:red">*</span></label>
+				</td>
+				<td>
+					<input type="text" id="lname" placeholder="Second" required onkeyup="validateTextBox(this,td2)" >
+				</td>
+				<td id="td2" onblur="setFocus(this)">
+					Cannot be empty.
+				</td>
+			</tr>
+			<tr>
+			<td>
+			<input type="button" id='Add' value= "Add" onclick="cal(fnam.value, lnam.value, res, this.value)">
+			</td>
+			<td>
+			<input type="button" id='Multiply' value= "Multiply" onclick="cal(fnam.value, lnam.value, res, this.value)">
+			</td>		
+			</tr>
+			<tr>
+			<td>
+			<input type="button" id='div' value= "Divide" onclick="cal(fnam.value, lnam.value, res, this.value)">
+			</td>
+			<td>
+			<input type="button" id='sub' value= "Sub" onclick="cal(fnam.value, lnam.value, res, this.value)">
+			</td>		
+			</tr>
+			<tr>
+			<td>
+			Result
+			</td>
+			<td>
+			<input type="button" id='res' value= "Result">
+			</td>
+			</tr>
+			
+	</table>
+	
+	</form>
+	
+</body>
+</html>

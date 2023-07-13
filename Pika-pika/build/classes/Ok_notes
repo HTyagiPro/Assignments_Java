@@ -1,0 +1,208 @@
+Access methods:
+	private members of class can be accessed only inside of that class.
+	package private(default): 	package private members of class can be directly accessed in the same class, sub class
+								and non-subclass of the same package but can not be accessed by the sub class or 
+								non-subclass of other packages.
+	Protected:	protected members of class can be accessed by the same class, subclass of same package and 
+				other packages and non-subclass of the same packages but cannot be accessed by non sub class 
+				of other packages.
+
+Package: 
+	-> Compile file from main folder then move the class file into package folder name and then continue executing.
+	-> Bulk import using '*' example import java.util.*;
+	-> Static import --> use static keyword after import to access static class variables and methods
+	
+Different packages in java:	Java API is organized with several packages.
+							java.lang
+							java.util
+							java.util.concurrent
+							java.sql
+							java.io
+							java.awt
+							java.time.LocalDate
+								
+LocalDate package:	creation of object: LocalDate ld = LocalDate.now();
+										LocalDate ld = LocalDate.of(yyyy,mm,dd);
+										Eg: ld.getDayOfMonth()+"-"+ld.getMonthValue()+"-"+ld.getYear()
+										
+LocalTime package:	Create of object will be same as that of date object
+
+LocalDateTime package:
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+
+		//LocalDate ld = LocalDate.now();
+		//LocalTime lt = LocalTime.now();	
+		//LocalDate ld = LocalDateTime.of(yyyy,mm,dd,hh,mm,ss);
+//System.out.println("Date : " + ld.getDayOfMonth()+"-"+ld.getMonthValue()+"-"+ld.getYear());
+//System.out.println("Time : " + lt.getHour()+":"+lt.getMinute()+":"+lt.getSecond());
+
+
+
+JUnit: 
+	-> Junit testing each unit of code to ensure it is working as per expectation/specification
+	-> In Object oriented language written application is a unit or a class.
+	-> Each class's each method's behaviour should be tested.
+	-> JUnit is Unit testing framework for java.
+Standard Levels of Testing:
+	-> Unit Testing 
+	-> Integration testing
+	-> System Testing
+	-> User Acceptance Testing
+	
+JUnit library/API should be included in out application.(Only for Java so JAR files need to be included)
+JAR archieve multiple class files compressed and ziped together in a single file. 	
+
+Annotations
+@BeforeEach - Will make the resources available for @Test. It will be executed before every @Test annotated method.
+@AfterEach - Will release the resource after each @Test. It will be executed after every @Test annotated method.
+@BeforeAll - Executes @Test annotated method only once before all the test method executes. Methods and instance need to be static
+@AfterAll - Executes @Test annotated method only once after all the test method executes. Methods and instance need to be static
+
+
+Maven: It is a project build and management tool.
+Maven maintains third party libraries in its repository called remote repositoriesand also local repositories.
+In pom.xml we have configure groupId, artifactId and version so that maven can pull/download specified libraries
+Project Object Model- consists of configurations/dependencies of maven project.
+<dependencies>
+    [...]
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.9.1</version>
+        <scope>test</scope>
+    </dependency>
+    [...]
+</dependencies>
+
+
+Inheritance - A class aquaring the behaviour and features for another class;
+Features can not be inherited: 	private members
+								Static members
+								constructors
+
+super(); this calls super class's default constructor
+this.y = y; and call to super class constructor should be the very first
+If child class and parent class have same member then the compiler first search for the child class
+if not found then go to parent class.
+"super" is also an implicit reference variable similar to this but it refers only the super class part.
+'super' should be used inside within the sub-class.
+
+Every class in java (predefined/user defined) is either directly or indirectly is sub class of 'Object' class in java.lang package.
+
+Method overriding -  redefining the super class's method inside the sub-class by retaining the same method signature.
+When sub class is overriding its super class's method then the sub class's methods then the sub method should have 
+the same access or stronger access but not weaker access.
+
+Important methods of 'Object' class:
+	toSting() which is inherited from Object by user defined Class convert the user defined class object's address to string.
+
+
+Has-A relationship:	Composition/Containment
+					One object contains another object(s) 
+					
+Polymorphism : Parent/Super class reference variables referring sub class objects.
+Though super class reference variables can refer sub class objects but cannot have access to sub-features.
+
+Generally method binding criteria depends on the type of reference variable but in case of overridden methods
+the binding criteria depends on type of object being referred but not the type of reference variable.
+
+Abstract methods: 	Incomplete methods.
+					If a class contains abstract methods then it mandatory for the class to be abstracted. 
+					Object of abstract classes can not be created.
+					It is the responsibility of sub classes to provide implementation for their super class's abstract methods
+					otherwise the subclasses also consider as abstract.
+					Abstract methods must be overridden.
+					If class doesn't contain any abstract method still we make a class abstract to avoid instanciation.
+					
+Purpose of writing a class:	Derivation (inheritance)
+							Instanciation					
+					
+final:		variables/methods/classes
+			To prevent method overriding.
+			To prevent a class from inheriting it by some other class.					
+					
+					
+					
+Interface is a reference type similar to class but without implementation
+From Java1.8 onwards interface can contain static method definitions and default method definitions
+Interface can contain abstract methods, static methods
+Any class can implement interface (means can provide definitations to its abstract methods)			
+Interface reference can refer implementation class object.
+By implementing an interface the implementation comes under an agreement with the interface.					
+Usage of interface can reduce dependency between classes					
+One Class can implements any number of interfaces				
+Interface can not be instanciated	
+One interface can extend other interface.
+					Single level
+					Multi-level
+					Multiple 
+Interface brings unrelated class together under one roof.
+Compare to interfaces, classes are heavy-weights because they have their own implementations and carry parents class's
+implementations also.
+Interfaces are light weight because they exist without parent overhead.					
+Default method in interface can be accessed only through the implementation of class object and can be overridden by implementation class					
+For Java 1.8 onwards interface can contain default as well as static methods before 1.8 version only abstract final methods and variables were allowed.
+
+Exception Handling:	Exception is an abnormal situation/condition or event that occurs during the execution of the
+					program and cause the program to terminate abnormally.
+					The abnormal situation which is an exceptional case but not regular case
+					Exception handling is a mechanism to handle this abnormal situation by program.
+					
+Ways to handle:		try/catch
+					throw
+					throws
+					finally
+try block is use to write the statements which are possibly responsible for the abnormal situation	
+catch is a block which catches the exception and process it.
+throw is used to throw the exceptions programmatically	
+throw is used to indicate that the following exceptions are thrown by the method
+finally is a block which has maximum guarantee of execution under all situation
+Exception is also an object
+Template/class
+	IOException
+	InterruptionException
+	SQLException
+	RuntimeException			//Falls under unchecked exception rest all are checked exception
+			ArithematicException
+			IndexOutOfBound	
+				ArrayIndexOutOfBoundException
+				StringIndexOutOfBoundException
+			NullPointerException
+	DataFormantException
+	CloneNotSupportedException
+
+Finally will be executed when:
+		exception occur but not caught finally will be executed before abnormal termination
+		exception occur but and caught
+		exception didn't occur
+		
+In java exceptions are of two types:
+	checked:	checked by the compiler
+				The method which is throwing the exception is catching it or not.
+				The method which is throwing the exception is declared with throws clause or not
+	unchecked:	Ignored by the compilers
+				
+	Expectations:	The method to which it is throwing the exception should catch it.
+				 	The method should be declared with throws clause.	
+					
+Throwable(superclass)	:	Error(subclass)- The exception of type error are beyond the reach of programmers.
+							Exception - 
+Universal Catch handler	:	catch(Exception e)	
+
+For inherited classes while handling the priority should be given to child classes
+
+Custom/user defined exceptions-			 				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
