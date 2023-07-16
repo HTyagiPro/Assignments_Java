@@ -1,3 +1,12 @@
+/*
+Create a class SavingsAccount by extending the Account class
+and provide attributes  
+1. minimumDepositAmount,
+2. noOfTransactionsPerDay. 
+Provide constructors , setters , getters and validation methods for above mentioned attributes.
+
+*/
+
 package com.har.acc;
 
 public class SavingAccount extends Account{
