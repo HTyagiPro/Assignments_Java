@@ -14,12 +14,12 @@ public class Transaction extends Account {
 	}
 	
 	
-	public static void withdraw(Account acc, double amount) throws InsufficientBalanceException{
+	public static void withdraw(Account acc, double amount) throws AccountException{
 		double bal = acc.getBalance();
 		if (bal-amount >= acc.getMinimumDepositAmount())
 			acc.setBalance(acc.getBalance()- amount );
 		else
-			throw new InsufficientBalanceException("Your funds are insufficient");
+			throw new AccountException("Your funds are insufficient");
 	}
 	
 }
