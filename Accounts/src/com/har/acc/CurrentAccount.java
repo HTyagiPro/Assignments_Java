@@ -13,7 +13,7 @@ public class CurrentAccount extends Account {
 		if (overDraftLimit <= 150000)
 			return overDraftLimit;
 		else 
-			throw new InsufficientBalanceException("Overdraft limit exceeds!!!");
+			throw new AccountException("Overdraft limit exceeds!!!");
 	}
 	
 	public double getOverDraftLimit() {
