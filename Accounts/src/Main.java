@@ -23,7 +23,7 @@ public class Main {
 			System.out.println(b.transactionForBank('d', acc[0], 500));
 			b.showAccounts();
 			*/
-		}catch(InsufficientBalanceException e) {
+		}catch(AccountException e) {
 			System.out.println(e);
 		}
 		
