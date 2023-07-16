@@ -14,7 +14,7 @@ public class Bank {
 		this.acc = acc;
 	}
 
-	public void addAccount(Account a) throws InsufficientBalanceException {
+	public void addAccount(Account a) throws AccountException {
 		boolean added = false;
 		for(int i=0; i<acc.length && added == false;i++) {
 			if (acc[i] != null) {
@@ -23,12 +23,12 @@ public class Bank {
 			}
 		}
 		if(!added)
-			throw new InsufficientBalanceException("Account Book Full!!!");
+			throw new AccountException("Account Book Full!!!");
 	}
 	
-	public String transactionForBank(char ttype,Account a,double amount) throws InsufficientBalanceException {
+	public String transactionForBank(char ttype,Account a,double amount) throws AccountException {
 		if(noOfTransaction >= ((SavingAccount) a).getNoOfTransactionsPerDay())
-			throw new InsufficientBalanceException("Transaction Limit Exceeded!!");
+			throw new AccountException("Transaction Limit Exceeded!!");
 		switch(ttype) {
 		case 'w':
 			Transaction.withdraw(a, amount);
@@ -39,7 +39,7 @@ public class Bank {
 			noOfTransaction += 1;
 			return "Transaction Successful\n Amount Deposited: "+amount+" /-";
 		default:
-			throw new InsufficientBalanceException("Invalid Transaction!!!");
+			throw new AccountException("Invalid Transaction!!!");
 		}
 		
 	}
