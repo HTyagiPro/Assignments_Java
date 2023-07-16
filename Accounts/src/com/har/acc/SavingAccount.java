@@ -11,18 +11,19 @@ package com.har.acc;
 
 public class SavingAccount extends Account{
 	double minimumDepositAmount;
-	static int noOfTransactionsPerDay;
+	 int noOfTransactionsPerDay;
 	Account a;
 	
+
 	public SavingAccount(Account a, int noOfTransactionsPerDay) {
 		super(a.getAccountNo(), a.getName(), a.getBalance(),a.getDateOfOpening(), a.getMinimumDepositAmount());
-		SavingAccount.noOfTransactionsPerDay = noOfTransactionsPerDay;
+		this.noOfTransactionsPerDay = noOfTransactionsPerDay;
 	}
 	public int getNoOfTransactionsPerDay() {
 		return noOfTransactionsPerDay;
 	}
 	public void setNoOfTransactionsPerDay(int noOfTransactionsPerDay) {
-		SavingAccount.noOfTransactionsPerDay = noOfTransactionsPerDay;
+		this.noOfTransactionsPerDay = noOfTransactionsPerDay;
 	}
 	
 }
