@@ -3,7 +3,7 @@ package com.har.acc;
 import java.time.LocalDate;
 
 public class Transaction extends Account {
-
+	static int noOfTransaction;
 	public Transaction(int accountNo, String name, double balance,LocalDate dateOfOpening, double minimumDepositAmount) {
 		super(accountNo, name, balance, dateOfOpening, minimumDepositAmount);
 		// TODO Auto-generated constructor stub
@@ -14,7 +14,7 @@ public class Transaction extends Account {
 	}
 	
 	
-	public static void withdraw(Account acc, double amount) {
+	public static void withdraw(Account acc, double amount) throws InsufficientBalanceException{
 		double bal = acc.getBalance();
 		if (bal-amount >= acc.getMinimumDepositAmount())
 			acc.setBalance(acc.getBalance()- amount );
