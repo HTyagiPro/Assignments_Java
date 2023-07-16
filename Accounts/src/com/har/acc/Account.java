@@ -1,3 +1,12 @@
+/*
+create a class Account with attributes
+1. accountNo
+2.openedDate
+3.balance.
+and provide constructors
+getters and setters.
+*/
+
 package com.har.acc;
 import java.time.LocalDate;
 
