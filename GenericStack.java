@@ -4,7 +4,7 @@ class GenericStack<T>{
 	private T[] stack;
 	int toS;
 	
-	Stack(T[] stack){
+	GenericStack(T[] stack){
 		this.stack = stack;
 		this.toS = -1;
 	}
