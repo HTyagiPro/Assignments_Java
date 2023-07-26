@@ -1,0 +1,39 @@
+
+
+<h1>Employee Data</h1>
+<emp-crud (addEmployeeEvent) = "addEmployee($event)"></emp-crud>
+<ol>
+    <li *ngFor="let e of empList">
+        <emp-component [eobj]="e"   (deleteEvent)="deleteEmployee($event)" ></emp-component>
+    </li>
+</ol>
+
+
+
+ <!--
+<table align="center" width = 50% border="1">
+    <caption>Employee Data</caption>
+    <tr>
+        <th>*</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Department No.</th>
+        <th>Action</th>
+    </tr>
+    <emp-component eobj=empList></emp-component>
+    
+   
+    <tr *ngFor="let e of elist; index as i">
+        <td><li></li></td>
+        <td>{{e.empid}}</td>
+        <td>{{e.ename}}</td>
+        <td>{{e.esal}}</td>
+        <td>{{e.edeptNo}}</td>
+        <td><input type="button" value="Delete" (click)="deleteEmployeeRow(i)" #del/></td>
+    </tr>
+
+
+</table>
+
+-->

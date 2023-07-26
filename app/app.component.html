@@ -1,0 +1,86 @@
+<!--<app-root></app-root>
+-->
+<!--
+<emp-list></emp-list>
+
+ -->
+ 
+ <!--      
+    <ul *ngFor="let e of employees">
+        <li>
+            {{e.empid +"     " +e.ename +"     " +e.esal + "     " +e.edeptNo}}    </li>
+    </ul>
+-->
+<!--
+
+<table align="center" width = 50% border="1">
+    <caption>Employee Details</caption>
+    <tr>
+        <th>*</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Department No.</th>
+        <th>Action</th>
+    </tr>
+    
+    <tr *ngFor="let e of elist; index as i">
+        <td><li></li></td>
+        <td>{{e.empid}}</td>
+        <td>{{e.ename}}</td>
+        <td>{{e.esal}}</td>
+        <td>{{e.edeptNo}}</td>
+        <td><input type="button" value="Delete" (click)="deleteEmployeeRow(i)" #del/></td>
+    </tr>
+
+
+</table>
+
+-->
+<!--
+<h1 [style.color]="myStyles.myColor" [style.fontFamily]="myStyles.myFont" [style.fontSize]="myStyles.myFontSize"> Hello world</h1>
+-->
+
+<!--
+<div [ngSwitch]="myColor">
+    <div *ngSwitchCase="'Pink'"><h1>Pink color</h1></div>
+    <div *ngSwitchCase="'Blue'">Blue color</div>
+    <div *ngSwitchCase="'Yellow'">Yellow color</div>
+    <div *ngSwitchCase="'Green'">Green color</div>
+    <div *ngSwitchCase="'White'">White color</div>
+    <div *ngSwitchDefault>No Color</div>
+</div>
+-->
+
+<!--
+<div *ngIf="flag; then trueBlock; else falseBlock"></div>
+    <ng-template #trueBlock>    
+        <h1>Hello World</h1>
+    </ng-template>
+    <ng-template #falseBlock>
+        <h1>Hello Universe</h1>
+    </ng-template>
+
+-->
+
+<!--
+<table align ="center" width ="50%">
+<tr>
+<th>First Number</th>
+<td><input  type ="number" [(ngModel)]="num1"/></td>
+</tr>
+<tr>
+<th>Second Number</th>
+<td><input type="number" [(ngModel)]="num2"/></td>
+</tr>
+<tr>
+<th>Results</th>
+<td><input type="text" [(ngModel)]="result"/></td>
+</tr>
+<tr>
+<th><input type="button" value="add" (click)="add()"/></th>
+<td><input type="button" value="sub" (click)="sub()"/></td>
+</tr>
+</table>
+
+-->
