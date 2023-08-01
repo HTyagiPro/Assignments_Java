@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:context="http://www.springframework.org/schema/context"
+
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+       
+       <context:component-scan base-package="com.har.spcd.beans"/>
+
+</beans>
+
+       
+        <!-- 
+        <bean id="vish1" class="com.har.spcd.beans.Vish" init-method="vishInit" destroy-method = "vishDestroy" >
+        <property name="message" value="Good Morning World!!!"/>
+        </bean>
+         -->
+         
+        <!-- 
+        <bean id="add1" class="com.har.spcd.beans.Address">
+        	<constructor-arg name='hNo' value="5"/>
+        	<constructor-arg name='street' value="MK Road"/>
+        	<constructor-arg name='city' value="Noida"/>
+        	<constructor-arg name='state' value="Uttar Pradesh"/>
+        </bean>
+         -->
+         
+         <!-- 
+        <bean id="add2" class="com.har.spcd.beans.Address" 
+        p:hNo="7"
+        p:street="SA Road"
+        p:city="Hapur"
+        p:state="U.P."/>
+         -->
+         
+         <!--
+         <bean id="add2" class="com.har.spcd.beans.Address" 
+        c:hNo="7"
+        c:street="SA Road"
+        c:city="Hapur"
+        c:state="U.P."/>
+         -->
+         
+        <!-- 
+        <bean id="add2" class="com.har.spcd.beans.Address" 
+        p:hNo="7"
+        p:street="SA Road"
+        p:city="Hapur"
+        p:state="U.P."/>
+        -->
+        <!-- 
+        <bean id="address" class="com.har.spcd.beans.Address" >	 
+        	<property name='hNo' value="6"/>
+        	<property name='street' value="MG Road"/>
+        	<property name='city' value="Mumbai"/>
+        	<property name='state' value="Maharastra"/>
+        	 
+        </bean>
+        
+        
+        
+        <bean id="perso1" class="com.har.spcd.beans.Person" >
+        	<property name='ssn' value="420"/>
+        	<property name='name' value="Ajay Saxena"/>
+        	<property name='age' value="35"/>
+        	 <property name='address' ref="add2"/> 
+        </bean>
+              -->    
+         <!-- 
+         
+         <bean id="ctry" class="com.har.spcd.beans.Country">
+         <property name="countryName" value="India"/>
+         <property name="currencyName" value="Rupees"/>
+         <property name="states" >
+         <map>
+         <entry key="AP" value="Arunachal Pradesh"/>
+         <entry key="UP" value="Uttar Pradesh"/>
+         <entry key="MP" value="Madhya Pradesh"/>
+         <entry key="BH" value="Bihar"/>
+         <entry key="HP" value="Himachal Pradesh"/>
+         
+         
+         </map>
+         
+          -->
+         
+         
+         <!-- 
+         <list>
+         <value>Uttar Pradesh</value>
+         <value>Madhya Pradesh</value>
+         <value>Goa</value>
+         <value>Arunachal Pradesh</value>
+         <value>Delhi</value>
+         <value>Haryana</value>	
+         </list>
+          
+         </property>
+         
+         </bean>
+         -->
