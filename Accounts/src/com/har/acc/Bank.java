@@ -27,7 +27,7 @@ public class Bank {
 	}
 	
 	public String transactionForBank(char ttype,Account a,double amount) throws AccountException {
-		if(noOfTransaction >= ((SavingAccount) a).getNoOfTransactionsPerDay())
+		if(noOfTransaction >= ((SavingAccount) a).noOfTransactionsPerDay)
 			throw new AccountException("Transaction Limit Exceeded!!");
 		switch(ttype) {
 		case 'w':
@@ -57,7 +57,7 @@ public class Bank {
 			System.out.println("Account Type: "+acc[i].getClass().getSimpleName());
 			
 			if (acc[i].getClass().getSimpleName().equals("SavingAccount"))
-				System.out.println("Per-day Transactions Limit: "+((SavingAccount) acc[i]).getNoOfTransactionsPerDay());
+				System.out.println("Per-day Transactions Limit: "+((SavingAccount) acc[i]).noOfTransactionsPerDay);
 			else if  (acc[i].getClass().getSimpleName().equals("CurrentAccount"))
 				System.out.println("Overdraft Limit: "+((CurrentAccount) acc[i]).getOverDraftLimit());
 			
