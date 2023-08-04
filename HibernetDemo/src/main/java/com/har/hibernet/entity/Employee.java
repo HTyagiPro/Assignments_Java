@@ -1,8 +1,11 @@
 package com.har.hibernet.entity;
 
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class Employee {
+	@Id
 	private int emp_id;
 	private String emp_name;
 	private double emp_sal;
@@ -41,7 +44,7 @@ public class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee:-\n------------------------------------\nEmployee ID: " + emp_id + "\nEmployee Name: " + emp_name + "\nEmployee Salary: " + emp_sal + "\nEmployee Dept. No."
+		return "Employee:-\n------------------------------------\nEmployee ID: " + emp_id + "\nEmployee Name: " + emp_name + "\nEmployee Salary: " + emp_sal + "\nEmployee Dept. No.: "
 				+ emp_deptNo + "\n------------------------------------\n";
 	}
 	

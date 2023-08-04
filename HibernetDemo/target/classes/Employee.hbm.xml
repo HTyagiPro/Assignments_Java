@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <!DOCTYPE hibernate-mapping PUBLIC 
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
     
     <hibernate-mapping>
-	    <class name="com.har.hibernet.entity.Employee" table="emp">
+	   <class name="com.har.hibernet.entity.Employee" table="emp">
 		    <id name="emp_id" column="emp_id"/>
-		    <id name="emp_name" column="emp_name"/>
-		    <id name="emp_sal" column="emp_sal"/>
-		    <id name="emp_deptNo" column="emp_deptNo"/>
-	    </class>
-    </hibernate-mapping>
+		    <property name="emp_name" column="emp_name"/>
+		    <property name="emp_sal" column="emp_sal"/>
+		    <property name="emp_deptNo" column="emp_deptNo"/>
+	  	</class>   	    
+	
+</hibernate-mapping>
     
-    
+<!-- 
+ 
+
+    <class name="com.har.hibernet.entity.Employee">
+
+        <id name="emp_id"  column="emp_id" />
+
+        <property name="emp_name" column="emp_name" />
+
+        <property name="emp_sal" column="emp_sal" />
+
+        <property name="emp_deptNo" column="emp_deptNo" />
+
+    </class>
+
+
+ -->    
