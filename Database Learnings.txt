@@ -1,0 +1,510 @@
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database prolifics;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> use prolifics;
+Database changed
+mysql> create table department(dept_no int primary key, dept_name text, location text);
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> desc department;
++-----------+------+------+-----+---------+-------+
+| Field     | Type | Null | Key | Default | Extra |
++-----------+------+------+-----+---------+-------+
+| dept_no   | int  | NO   | PRI | NULL    |       |
+| dept_name | text | YES  |     | NULL    |       |
+| location  | text | YES  |     | NULL    |       |
++-----------+------+------+-----+---------+-------+
+3 rows in set (0.11 sec)
+
+mysql> insert into values(10,"sales", 'Noida'), (20, "Marketing", 'Delhi'), (30, "Engineering", 'Gurugram');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(10,"sales", 'Noida'), (20, "Marketing", 'Delhi'), (30, "Engineering", 'Gu' at line 1
+mysql> insert into department values(10,"sales", 'Noida'), (20, "Marketing", 'Delhi'), (30, "Engineering", 'Gurugram');
+Query OK, 3 rows affected (0.07 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from Department;
++---------+-------------+----------+
+| dept_no | dept_name   | location |
++---------+-------------+----------+
+|      10 | sales       | Noida    |
+|      20 | Marketing   | Delhi    |
+|      30 | Engineering | Gurugram |
++---------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> create table emp(emp_id int primary key, emp_name text, emp_sal double,emp_deptNo int foreign key(emp_deptNo)references department(dept_no) on delete cascade);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(emp_deptNo)references department(dept_no) on delete cascade)' at line 1
+mysql> create table emp(emp_id int primary key, emp_name text, emp_sal double,emp_deptNo int foreign key(emp_deptNo) references department(dept_no) on delete cascade);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(emp_deptNo) references department(dept_no) on delete cascade)' at line 1
+mysql> create table emp(emp_id int primary key, emp_name text, emp_sal double,emp_deptNo int foreign key(emp_deptNo) references department(dept_no) on delete cascade);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(emp_deptNo) references department(dept_no) on delete cascade)' at line 1
+mysql> create table emp(emp_id int primary key, emp_name text, emp_sal double,emp_deptNo int, foreign key(emp_deptNo) references department(dept_no) on delete cascade);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc emp;
++------------+--------+------+-----+---------+-------+
+| Field      | Type   | Null | Key | Default | Extra |
++------------+--------+------+-----+---------+-------+
+| emp_id     | int    | NO   | PRI | NULL    |       |
+| emp_name   | text   | YES  |     | NULL    |       |
+| emp_sal    | double | YES  |     | NULL    |       |
+| emp_deptNo | int    | YES  | MUL | NULL    |       |
++------------+--------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into emp values(101, "Ajay",1000, 10),(102, "Vijay",2000, 20);
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values(103, "Sanjay",3000, 30),(104, "Digvijay",4000, 40);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`prolifics`.`emp`, CONSTRAINT `emp_ibfk_1` FOREIGN KEY (`emp_deptNo`) REFERENCES `department` (`dept_no`) ON DELETE CASCADE)
+mysql> insert into emp values(103, "Sanjay",3000, 30),(104, "Digvijay",4000, 30);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+---------+------------+
+| emp_id | emp_name | emp_sal | emp_deptNo |
++--------+----------+---------+------------+
+|    101 | Ajay     |    1000 |         10 |
+|    102 | Vijay    |    2000 |         20 |
+|    103 | Sanjay   |    3000 |         30 |
+|    104 | Digvijay |    4000 |         30 |
++--------+----------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Department;
++---------+-------------+----------+
+| dept_no | dept_name   | location |
++---------+-------------+----------+
+|      10 | sales       | Noida    |
+|      20 | Marketing   | Delhi    |
+|      30 | Engineering | Gurugram |
++---------+-------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> delete from department where deptNo = 30;
+ERROR 1054 (42S22): Unknown column 'deptNo' in 'where clause'
+mysql> delete from department where dept_no = 30;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from Department;
++---------+-----------+----------+
+| dept_no | dept_name | location |
++---------+-----------+----------+
+|      10 | sales     | Noida    |
+|      20 | Marketing | Delhi    |
++---------+-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp;
++--------+----------+---------+------------+
+| emp_id | emp_name | emp_sal | emp_deptNo |
++--------+----------+---------+------------+
+|    101 | Ajay     |    1000 |         10 |
+|    102 | Vijay    |    2000 |         20 |
++--------+----------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> create table account (acc_no int primary key auto_increament , acc_bal double, acc_openedDate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increament , acc_bal double, acc_openedDate date)' at line 1
+mysql> create table account(acc_no int primary key auto_increament, acc_bal double, acc_openedDate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increament, acc_bal double, acc_openedDate date)' at line 1
+mysql> create table account(acc_no int primary key auto_increment, acc_bal double, acc_openedDate date);
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> drop table account;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table account(acc_no int primary key auto_increment, acc_bal double, acc_openedDate date)auto_increament=7001;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'auto_increament=7001' at line 1
+mysql> create table account(acc_no int primary key auto_increment, acc_bal double, acc_openedDate date)auto_increment=7001;
+Query OK, 0 rows affected (0.46 sec)
+
+mysql> insert into account(balance, acc_openedDate) values(1000, sysdate());
+ERROR 1054 (42S22): Unknown column 'balance' in 'field list'
+mysql> insert into account(acc_bal, acc_openedDate) values(1000, sysdate());
+Query OK, 1 row affected, 1 warning (0.03 sec)
+
+mysql> insert into account(acc_bal, acc_openedDate) values(2000, sysdate());
+Query OK, 1 row affected, 1 warning (0.02 sec)
+
+mysql> select * from accountl
+    -> ^C
+mysql> select * from account;
++--------+---------+----------------+
+| acc_no | acc_bal | acc_openedDate |
++--------+---------+----------------+
+|   7001 |    1000 | 2023-07-28     |
+|   7002 |    2000 | 2023-07-28     |
++--------+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into emp values(103, "Sanjay",3000, 30),(104, "Digvijay",4000, 30);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`prolifics`.`emp`, CONSTRAINT `emp_ibfk_1` FOREIGN KEY (`emp_deptNo`) REFERENCES `department` (`dept_no`) ON DELETE CASCADE)
+mysql> insert into department values(40,"Finance", 'Bombay'), (30, "Engineering", 'Gurugram');
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values(103, "Sanjay",3000, 30),(104, "Digvijay",4000, 30);
+Query OK, 2 rows affected (0.29 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values(105, "Sanjana",5000, 40),(106, "Anjana",6000, 40),(107, "Leela",7000,40);
+Query OK, 3 rows affected (0.13 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+---------+------------+
+| emp_id | emp_name | emp_sal | emp_deptNo |
++--------+----------+---------+------------+
+|    101 | Ajay     |    1000 |         10 |
+|    102 | Vijay    |    2000 |         20 |
+|    103 | Sanjay   |    3000 |         30 |
+|    104 | Digvijay |    4000 |         30 |
+|    105 | Sanjana  |    5000 |         40 |
+|    106 | Anjana   |    6000 |         40 |
+|    107 | Leela    |    7000 |         40 |
++--------+----------+---------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select sum(emp_sal) from emp group by emp_deptNo;
++--------------+
+| sum(emp_sal) |
++--------------+
+|         1000 |
+|         2000 |
+|         7000 |
+|        18000 |
++--------------+
+4 rows in set (0.10 sec)
+
+mysql> select sum(emp_sal) from emp group by emp_deptNo having emp_deptNo in(30,40);
++--------------+
+| sum(emp_sal) |
++--------------+
+|         7000 |
+|        18000 |
++--------------+
+2 rows in set (0.01 sec)
+
+mysql> select max(emp_sal), emp_name from emp where emp_sal = max(emp_sal);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select max(emp_sal), emp_name from emp ;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #2 of SELECT list contains nonaggregated column 'prolifics.emp.emp_name'; this is incompatible with sql_mode=only_full_group_by
+mysql> select max(emp_sal), emp_name from emp where emp_sal = (select max(emp_sal) from emp);
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #2 of SELECT list contains nonaggregated column 'prolifics.emp.emp_name'; this is incompatible with sql_mode=only_full_group_by
+mysql> select emp_sal, emp_name from emp where emp_sal = (select max(emp_sal) from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select emp_sal, emp_name from emp where emp_sal = (select max(emp_sal) from emp);
++---------+----------+
+| emp_sal | emp_name |
++---------+----------+
+|    7000 | Leela    |
++---------+----------+
+1 row in set (0.01 sec)
+
+mysql> select max(emp_sal) from emp where emp
+    -> ^C
+mysql> select max(emp_sal) from emp where emp_sal < (select avg(emp_sal) from emp);
++--------------+
+| max(emp_sal) |
++--------------+
+|         3000 |
++--------------+
+1 row in set (0.02 sec)
+
+mysql> select * from emp where emp_deptNo = (select emp_deptNo from where emp_name ="Leela");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where emp_name ="Leela")' at line 1
+mysql> select * from emp where emp_deptNo = (select emp_deptNo from emp where emp_name ="Leela");
++--------+----------+---------+------------+
+| emp_id | emp_name | emp_sal | emp_deptNo |
++--------+----------+---------+------------+
+|    105 | Sanjana  |    5000 |         40 |
+|    106 | Anjana   |    6000 |         40 |
+|    107 | Leela    |    7000 |         40 |
++--------+----------+---------+------------+
+3 rows in set (0.01 sec)
+
+mysql> delete from department;
+Query OK, 4 rows affected (0.03 sec)
+
+mysql> select* from emp;
+Empty set (0.00 sec)
+
+mysql> create table department(dept_no int, dept_name text, location text);
+ERROR 1050 (42S01): Table 'department' already exists
+mysql> create table department2(dept_no int, dept_name text, location text);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> insert into department2 values(40,"Finance", 'Bombay'), (30, "Engineering", 'Gurugram');
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into department2 values(10,"sales", 'Noida'), (20, "Marketing", 'Delhi'), (30, "Engineering", 'Gurugram');
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from department2;
++---------+-------------+----------+
+| dept_no | dept_name   | location |
++---------+-------------+----------+
+|      40 | Finance     | Bombay   |
+|      30 | Engineering | Gurugram |
+|      10 | sales       | Noida    |
+|      20 | Marketing   | Delhi    |
+|      30 | Engineering | Gurugram |
++---------+-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> delect from department2 where dept_No = 30 Limit =1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delect from department2 where dept_No = 30 Limit =1' at line 1
+mysql> delect from department2 where dept_No = 30 Limit 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delect from department2 where dept_No = 30 Limit 1' at line 1
+mysql> delect from department2 where dept_No = 30 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delect from department2 where dept_No = 30' at line 1
+mysql> delete from department2 where dept_No = 30 ;
+Query OK, 2 rows affected (0.07 sec)
+
+mysql> insert into department2 values(30, "Engineering", 'Gurugram');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from department2;
++---------+-------------+----------+
+| dept_no | dept_name   | location |
++---------+-------------+----------+
+|      40 | Finance     | Bombay   |
+|      10 | sales       | Noida    |
+|      20 | Marketing   | Delhi    |
+|      30 | Engineering | Gurugram |
++---------+-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> insert into emp values(101, "Ajay",1000, 10),(102, "Vijay",2000, 20);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`prolifics`.`emp`, CONSTRAINT `emp_ibfk_1` FOREIGN KEY (`emp_deptNo`) REFERENCES `department` (`dept_no`) ON DELETE CASCADE)
+mysql> drop table emp;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table emp(emp_id int primary key, emp_name text, emp_sal double,emp_deptNo int);
+Query OK, 0 rows affected (0.26 sec)
+
+mysql> insert into emp values(101, "Ajay",1000, 10),(102, "Vijay",2000, 20);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values(103, "Sanjay",3000, 30),(104, "Digvijay",4000, 30);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values(105, "Sanjana",5000, 40),(106, "Anjana",6000, 40),(107, "Leela",7000,40);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+---------+------------+
+| emp_id | emp_name | emp_sal | emp_deptNo |
++--------+----------+---------+------------+
+|    101 | Ajay     |    1000 |         10 |
+|    102 | Vijay    |    2000 |         20 |
+|    103 | Sanjay   |    3000 |         30 |
+|    104 | Digvijay |    4000 |         30 |
+|    105 | Sanjana  |    5000 |         40 |
+|    106 | Anjana   |    6000 |         40 |
+|    107 | Leela    |    7000 |         40 |
++--------+----------+---------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from department2;
++---------+-------------+----------+
+| dept_no | dept_name   | location |
++---------+-------------+----------+
+|      40 | Finance     | Bombay   |
+|      10 | sales       | Noida    |
+|      20 | Marketing   | Delhi    |
+|      30 | Engineering | Gurugram |
++---------+-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> insert into emp values(108, "Ranjana",8000, 50);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from emp;
++--------+----------+---------+------------+
+| emp_id | emp_name | emp_sal | emp_deptNo |
++--------+----------+---------+------------+
+|    101 | Ajay     |    1000 |         10 |
+|    102 | Vijay    |    2000 |         20 |
+|    103 | Sanjay   |    3000 |         30 |
+|    104 | Digvijay |    4000 |         30 |
+|    105 | Sanjana  |    5000 |         40 |
+|    106 | Anjana   |    6000 |         40 |
+|    107 | Leela    |    7000 |         40 |
+|    108 | Ranjana  |    8000 |         50 |
++--------+----------+---------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from department2;
++---------+-------------+----------+
+| dept_no | dept_name   | location |
++---------+-------------+----------+
+|      40 | Finance     | Bombay   |
+|      10 | sales       | Noida    |
+|      20 | Marketing   | Delhi    |
+|      30 | Engineering | Gurugram |
++---------+-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e, department2 d;
++--------+----------+------------+----------+
+| emp_id | emp_name | emp_deptNo | location |
++--------+----------+------------+----------+
+|    101 | Ajay     |         10 | Gurugram |
+|    101 | Ajay     |         10 | Delhi    |
+|    101 | Ajay     |         10 | Noida    |
+|    101 | Ajay     |         10 | Bombay   |
+|    102 | Vijay    |         20 | Gurugram |
+|    102 | Vijay    |         20 | Delhi    |
+|    102 | Vijay    |         20 | Noida    |
+|    102 | Vijay    |         20 | Bombay   |
+|    103 | Sanjay   |         30 | Gurugram |
+|    103 | Sanjay   |         30 | Delhi    |
+|    103 | Sanjay   |         30 | Noida    |
+|    103 | Sanjay   |         30 | Bombay   |
+|    104 | Digvijay |         30 | Gurugram |
+|    104 | Digvijay |         30 | Delhi    |
+|    104 | Digvijay |         30 | Noida    |
+|    104 | Digvijay |         30 | Bombay   |
+|    105 | Sanjana  |         40 | Gurugram |
+|    105 | Sanjana  |         40 | Delhi    |
+|    105 | Sanjana  |         40 | Noida    |
+|    105 | Sanjana  |         40 | Bombay   |
+|    106 | Anjana   |         40 | Gurugram |
+|    106 | Anjana   |         40 | Delhi    |
+|    106 | Anjana   |         40 | Noida    |
+|    106 | Anjana   |         40 | Bombay   |
+|    107 | Leela    |         40 | Gurugram |
+|    107 | Leela    |         40 | Delhi    |
+|    107 | Leela    |         40 | Noida    |
+|    107 | Leela    |         40 | Bombay   |
+|    108 | Ranjana  |         50 | Gurugram |
+|    108 | Ranjana  |         50 | Delhi    |
+|    108 | Ranjana  |         50 | Noida    |
+|    108 | Ranjana  |         50 | Bombay   |
++--------+----------+------------+----------+
+32 rows in set (0.02 sec)
+
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e, department2 d group by e.emp_deptNo;
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'prolifics.e.emp_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e, department2 d where e.emp_deptNo = d.dept_no;
++--------+----------+------------+----------+
+| emp_id | emp_name | emp_deptNo | location |
++--------+----------+------------+----------+
+|    101 | Ajay     |         10 | Noida    |
+|    102 | Vijay    |         20 | Delhi    |
+|    103 | Sanjay   |         30 | Gurugram |
+|    104 | Digvijay |         30 | Gurugram |
+|    105 | Sanjana  |         40 | Bombay   |
+|    106 | Anjana   |         40 | Bombay   |
+|    107 | Leela    |         40 | Bombay   |
++--------+----------+------------+----------+
+7 rows in set (0.00 sec)
+
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e join department2 d on e.emp_deptNo = d.dept_no;
++--------+----------+------------+----------+
+| emp_id | emp_name | emp_deptNo | location |
++--------+----------+------------+----------+
+|    101 | Ajay     |         10 | Noida    |
+|    102 | Vijay    |         20 | Delhi    |
+|    103 | Sanjay   |         30 | Gurugram |
+|    104 | Digvijay |         30 | Gurugram |
+|    105 | Sanjana  |         40 | Bombay   |
+|    106 | Anjana   |         40 | Bombay   |
+|    107 | Leela    |         40 | Bombay   |
++--------+----------+------------+----------+
+7 rows in set (0.00 sec)
+
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e left outer join department2 d on e.emp_deptNo = d.dept_no;
++--------+----------+------------+----------+
+| emp_id | emp_name | emp_deptNo | location |
++--------+----------+------------+----------+
+|    101 | Ajay     |         10 | Noida    |
+|    102 | Vijay    |         20 | Delhi    |
+|    103 | Sanjay   |         30 | Gurugram |
+|    104 | Digvijay |         30 | Gurugram |
+|    105 | Sanjana  |         40 | Bombay   |
+|    106 | Anjana   |         40 | Bombay   |
+|    107 | Leela    |         40 | Bombay   |
+|    108 | Ranjana  |         50 | NULL     |
++--------+----------+------------+----------+
+8 rows in set (0.01 sec)
+
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e right outer join department2 d on e.emp_deptNo = d.dept_no;
++--------+----------+------------+----------+
+| emp_id | emp_name | emp_deptNo | location |
++--------+----------+------------+----------+
+|    107 | Leela    |         40 | Bombay   |
+|    106 | Anjana   |         40 | Bombay   |
+|    105 | Sanjana  |         40 | Bombay   |
+|    101 | Ajay     |         10 | Noida    |
+|    102 | Vijay    |         20 | Delhi    |
+|    104 | Digvijay |         30 | Gurugram |
+|    103 | Sanjay   |         30 | Gurugram |
++--------+----------+------------+----------+
+7 rows in set (0.00 sec)
+
+mysql> insert into department2 values(60,'Research', 'Bangalore');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e right outer join department2 d on e.emp_deptNo = d.dept_no;
++--------+----------+------------+-----------+
+| emp_id | emp_name | emp_deptNo | location  |
++--------+----------+------------+-----------+
+|    107 | Leela    |         40 | Bombay    |
+|    106 | Anjana   |         40 | Bombay    |
+|    105 | Sanjana  |         40 | Bombay    |
+|    101 | Ajay     |         10 | Noida     |
+|    102 | Vijay    |         20 | Delhi     |
+|    104 | Digvijay |         30 | Gurugram  |
+|    103 | Sanjay   |         30 | Gurugram  |
+|   NULL | NULL     |       NULL | Bangalore |
++--------+----------+------------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e full outer join department2 d on e.emp_deptNo = d.dept_no;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'full outer join department2 d on e.emp_deptNo = d.dept_no' at line 1
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e full join department2 d on e.emp_deptNo = d.dept_no;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'full join department2 d on e.emp_deptNo = d.dept_no' at line 1
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e left outer join union right outer join department2 d on e.emp_deptNo = d.dept_no;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'union right outer join department2 d on e.emp_deptNo = d.dept_no' at line 1
+mysql> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e left outer join department2 d on e.emp_deptNo = d.dept_no
+    -> union
+    -> select e.emp_id, e.emp_name, e.emp_deptNo, d.location from emp e right outer join department2 d on e.emp_deptNo = d.dept_no;
++--------+----------+------------+-----------+
+| emp_id | emp_name | emp_deptNo | location  |
++--------+----------+------------+-----------+
+|    101 | Ajay     |         10 | Noida     |
+|    102 | Vijay    |         20 | Delhi     |
+|    103 | Sanjay   |         30 | Gurugram  |
+|    104 | Digvijay |         30 | Gurugram  |
+|    105 | Sanjana  |         40 | Bombay    |
+|    106 | Anjana   |         40 | Bombay    |
+|    107 | Leela    |         40 | Bombay    |
+|    108 | Ranjana  |         50 | NULL      |
+|   NULL | NULL     |       NULL | Bangalore |
++--------+----------+------------+-----------+
+9 rows in set (0.02 sec)
+
+mysql>
