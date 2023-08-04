@@ -19,13 +19,18 @@ public class Employee extends Person {
 		this.orgName = orgName;
 	}
 
-
+	public int validateId(int e_id) {
+		if(e_id != 0)
+			return e_id;
+		else 
+			throw new InvalidIdException("ID can not be NULL");
+	}
 
 	public int getE_id() {
-		return e_id;
+		return validateId(e_id);
 	}
 	public void setE_id(int e_id) {
-		this.e_id = e_id;
+		this.e_id = validateId(e_id);
 	}
 	public double getSalary() {
 		return salary;

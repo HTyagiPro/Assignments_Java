@@ -1,4 +1,5 @@
 
+
 public class Person {
 	
 	private int ssn;
@@ -9,13 +10,21 @@ public class Person {
 	public Person(int ssn, String name, int age) {
 		this.ssn = ssn;
 		this.name = name;
-		this.age = age;
+		this.age = this.validateAge(age);
+		
+		
 	}
 
 
-
+	public int validateAge(int age) {
+		if (age >=18)
+			return age;
+		else
+			throw new InvalidAgeException("Invalid age as per labour law");
+	}
 
 	public Person() {
+		
 	}
 
 
@@ -54,7 +63,7 @@ public class Person {
 
 
 	public int getAge() {
-		return age;
+		return this.validateAge(age);
 	}
 
 
@@ -62,7 +71,7 @@ public class Person {
 
 
 	public void setAge(int age) {
-		this.age = age;
+		this.age = this.validateAge(age);
 	}
 
 }

@@ -1,9 +1,9 @@
 
-public class List {
-	Object[] a;
+public class List<T> {
+	T[] a;
 	public int ptr=2;
 	
-	public List(Object[] a) {
+	public List(T[] a) {
 		this.a = a;
 	}
 	
@@ -15,7 +15,7 @@ public class List {
 
 
 
-	public void setA(Object[] a) {
+	public void setA(T[] a) {
 		this.a = a;
 	}
 
@@ -104,7 +104,7 @@ public class List {
 	
 	//Add element in the beginning
 	
-	public void addAtTheBeg(Object ele)  throws RuntimeException{
+	public void addAtTheBeg(T ele)  throws RuntimeException{
 		if(this.eleLength() >=0 && this.eleLength() < this.a.length) {
 			this.shiftRight(0);
 			this.a[0] = ele;
@@ -116,7 +116,7 @@ public class List {
 	
 	//Add element at the end
 	
-	public void addAtEnd(Object ele) throws RuntimeException {
+	public void addAtEnd(T ele) throws RuntimeException {
 		if(this.eleLength() >=0 && this.eleLength() < this.a.length)
 			this.a[this.eleLength()] = ele;
 		else 
@@ -126,7 +126,7 @@ public class List {
 	
 	//Add element at index p
 	
-	public void addAtPosition(Object ele, int p) {
+	public void addAtPosition(T ele, int p) {
 		this.shiftRight(p+1);
 		this.a[p] = ele;
 	}
@@ -135,7 +135,7 @@ public class List {
 	//Print list
 	
 	public void printList() {
-		for(Object p:this.a){
+		for(T p:this.a){
 			if(p!=null)
 			System.out.print(p + "\t");
 		}
@@ -143,7 +143,7 @@ public class List {
 	}
 	
 	public static void main(String[] args) {
-		List l = new List(new Integer[10]);
+		List<Integer> l = new List<Integer>(new Integer[10]);
 		try {
 		l.addAtTheBeg(9);
 		l.printList();
@@ -163,11 +163,13 @@ public class List {
 		l.printList();
 		l.addAtTheBeg(7);
 		l.printList();
-		l.deleteAtPosition(2);
+		l.deleteAtPosition(1);
+		l.printList();
+		l.addAtTheBeg(33);
 		l.printList();
 		l.addAtPosition(99, 2);
 		l.printList();
-		l.deleteElement(3);
+		l.deleteElement(33);
 		l.printList();
 		
 		System.out.println(l.eleLength());
@@ -176,6 +178,9 @@ public class List {
 		}
 		System.out.println("Final List:-");
 		 l.printList();
+		 
+		 for(int k = 0; k<l.a.length;k++)
+			 System.out.print(l.a[k]+ "\t");
 		
 }
 }
