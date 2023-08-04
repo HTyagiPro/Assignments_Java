@@ -1,13 +1,5 @@
-import java.sql.SQLDataException;
-
 public class Utility2 {
 	
-	public static int  divide2 (int x , int y) throws SQLDataException  {
-		if (y!=0)
-			return x/y;
-		throw new java.sql.SQLDataException();
-	
-	}	
 	
 	
 	class A{
