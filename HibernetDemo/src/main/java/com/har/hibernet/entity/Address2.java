@@ -1,8 +1,13 @@
 package com.har.hibernet.entity;
-
 import javax.persistence.*;
+import org.hibernate.annotations.NamedQuery;
+
+
 @Entity
-public class Address {
+@javax.persistence.Table(name = "address")
+@NamedQuery(name = "getAllAddress", query = "from Address2")
+public class Address2 {
+	
 	@Id
 	private int add_id;
 	private String add_Hno;
@@ -10,19 +15,10 @@ public class Address {
 	private String add_city;
 	private String add_state;
 	
-	@OneToOne(mappedBy="address")
-	Person person;
 	
-	
-	public Person getPerson() {
-		return person;
+	public Address2() {
 	}
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-	public Address() {
-	}
-	public Address(int add_id, String add_Hno, String add_street, String add_city, String add_state) {
+	public Address2(int add_id, String add_Hno, String add_street, String add_city, String add_state) {
 		this.add_id = add_id;
 		this.add_Hno = add_Hno;
 		this.add_street = add_street;
@@ -64,6 +60,5 @@ public class Address {
 		return "\nAddress:-\n\tAdd ID: " + add_id + "\n\tAdd H.No.: " + add_Hno + "\n\tAdd Street: " + add_street + "\n\tAdd City: "
 				+ add_city + "\n\tAdd State: " + add_state + "\n------------------------------------\n";
 	}
-	
-	
 }
+	

@@ -1,6 +1,6 @@
-package com.har.hibernet.entity;
-import javax.persistence.*;
+package  hibernate.query.demo;
 
+import javax.persistence.*;
 @Entity
 @Table(name="emp")
 public class Employee {
@@ -8,11 +8,9 @@ public class Employee {
 	private int emp_id;
 	private String emp_name;
 	private double emp_sal;
-	//private int emp_deptNo;
+	private int emp_deptNo;
 	
-	@ManyToOne
-	@JoinColumn(name="emp_deptNo")
-	Department department;
+	
 	
 	
 	
@@ -43,25 +41,19 @@ public class Employee {
 	public void setEmp_sal(double emp_sal) {
 		this.emp_sal = emp_sal;
 	}
-	/*
+	
 	public int getEmp_deptNo() {
 		return emp_deptNo;
 	}
 	public void setEmp_deptNo(int emp_deptNo) {
 		this.emp_deptNo = emp_deptNo;
 	}
-	*/
-	public Department getDepartment() {
-		return department;
-	}
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
+	
 	
 	@Override
 	public String toString() {
 		return "Employee:-\n------------------------------------\nEmployee ID: " + emp_id + "\nEmployee Name: " + emp_name + "\nEmployee Salary: " + emp_sal + "\nEmployee Dept.: "
-				+department+ "\n------------------------------------\n";
+				+emp_deptNo+ "\n------------------------------------\n";
 	}
 	
 	
