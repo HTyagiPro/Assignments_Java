@@ -1,0 +1,20 @@
+<table align="center" width = 50% border="1">
+    <caption>Book Details</caption>
+    <tr>
+        <th>*</th>
+        <th>Book Title</th>
+        <th>Author Name</th>
+        <th>Publication</th>
+        <th>Price</th>
+    </tr>
+    
+    <tr *ngFor="let b of books;">
+        <td><li></li></td>
+        <td>{{b.bookTitle}}</td>
+        <td>{{b.author}}</td>
+        <td>{{b.publication}}</td>
+        <td>{{b.price}}</td>
+    </tr>
+
+
+</table>

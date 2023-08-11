@@ -1,0 +1,20 @@
+<table align="center" width = 50% border="1">
+    <caption>Train Details</caption>
+    <tr>
+        <th>Train ID </th>
+        <th>Train Name</th>
+        <th>Source </th>
+        <th>Destination </th>
+        <th>Compartments </th>
+        <th>Fare </th>
+    </tr>
+    <tr *ngFor = "let t of trainList">
+        <td>{{t.trainId}}</td>
+        <td>{{t.trainName}}</td>
+        <td>{{t.source}}</td>
+        <td>{{t.destination}}</td>
+        <td>{{t.compartments}}</td>
+        <td>{{t.fare}}</td>
+    </tr>
+
+</table>

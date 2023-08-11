@@ -8,12 +8,13 @@ import { SalaryRange } from './rangeSalary.pipe';
 import { EmployeeListComponent2 } from './employee-list-component2';
 import { EmployeeComponent } from './employee.component';
 import { EmployeeCrudComponent } from './employee-crud.component';
+import { EmployeeRouteService } from './employee-route.service';
 
 @NgModule({
     declarations: [EmployeeListComponent, SalaryRange, EmployeeListComponent2, EmployeeComponent, EmployeeCrudComponent],
     imports: [FormsModule, CommonModule],
     exports:[EmployeeListComponent, EmployeeListComponent2],
-    providers: [EmployeeService ]
+    providers: [EmployeeService , EmployeeRouteService]
   })
 
   export class EmployeeModule{

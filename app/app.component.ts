@@ -3,9 +3,9 @@ import { empData } from './Employee/employe-data';
 import { Employee } from './Employee/employee';
 @Component({
   selector: 'app-component',
-  //templateUrl: 'app.component.html',
-  template: `<emp-list2></emp-list2>`,
- 
+  templateUrl: 'app.component.html',
+  //template: `<emp-list2></emp-list2>`,
+ //template: `<h1 addColor>Welcome to my Dark Side... </h1>`,
  
  
 	//template: `{{ myName | reverse}}`,
@@ -22,6 +22,7 @@ export class AppComponent {
   doj: Date = new Date();
   share:number = 25.00;
   childMessage:string="";
+
   receiveMessage(message:string){
 	this.childMessage = " " +message;
   }

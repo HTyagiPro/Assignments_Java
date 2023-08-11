@@ -1,0 +1,16 @@
+<table align="center" width = 50% border="1" >
+    <caption>Product Details</caption>
+    <tr>
+        <th>Product ID </th>
+        <th>Product Name</th>
+        <th>Product Category </th>
+        <th>Product Cost </th>
+    </tr>
+    <tr *ngFor = "let p of productList">
+        <td>{{p.productId}}</td>
+        <td (click)="goToRoute(p.productName)">{{p.productName}}</td>
+        <td>{{p.productCategory}}</td>
+        <td>{{p.productCost}}</td>
+    </tr>
+
+</table>
