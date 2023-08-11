@@ -39,6 +39,7 @@ public class Train {
 	@Id
 	@Column(name = "train_id")
 	private int trainId;
+	@Column(name="train_name")
 	private String trainName;
 	private String source;
 	private String destination;

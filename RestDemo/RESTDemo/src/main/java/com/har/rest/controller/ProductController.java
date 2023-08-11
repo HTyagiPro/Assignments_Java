@@ -15,52 +15,50 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.har.rest.entity.Train;
+import com.har.rest.entity.Product;
+import com.har.rest.service.ProductService;
 import com.har.rest.exception.ResourceNotFoundException;
 import com.har.rest.exception.ResourceNotModifiedException;
-import com.har.rest.service.TrainService;
 
-/*
-@Controller
-@ResponseBody
-*/
+
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
-@RequestMapping(value = "train")
-public class TrainController {
+@RequestMapping(value = "product")
+public class ProductController {
+	
 	@Autowired
-	TrainService trainService;
+	ProductService productService;
 	
 	@GetMapping(value="/", produces = "application/json")
-	public List<Train> getAllTrains(){
-		return trainService.getAllTrain();
+	public List<Product> getAllProduct(){
+		return productService.getAllProduct();
 	}
 	
 	@GetMapping(value="/{train_id}", produces = "application/json")
-	public ResponseEntity<Train> getTrainsByTrainId(@PathVariable int train_id){
-		Train t = trainService.getTrainByTrainId(train_id);
+	public ResponseEntity<Product> getProductByProductId(@PathVariable int productId){
+		Product t = productService.getProductByProductId(productId);
 		if(t!=null)
-			return new ResponseEntity<Train>(t, HttpStatus.OK);
-		return new ResponseEntity<Train>(t, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Product>(t, HttpStatus.OK);
+		return new ResponseEntity<Product>(t, HttpStatus.NOT_FOUND);
 	}
 	
 	@PostMapping(value = "/", consumes = "application/json")
-	public HttpStatus insertTrain(@RequestBody Train train) {
-		trainService.insertOrModifyTrain(train);
+	public HttpStatus insertProduct(@RequestBody Product product) {
+		productService.insertOrModifyProduct(product);
 			return HttpStatus.OK;
 		
 	}
 	
 	@PutMapping(value = "/", consumes = "application/json")
-	public HttpStatus modifyTrain(@RequestBody Train train) {
-		trainService.insertOrModifyTrain(train);
+	public HttpStatus modifyProduct(@RequestBody Product product) {
+		productService.insertOrModifyProduct(product);
 			return HttpStatus.OK;
 	
 	}
 	
 	@DeleteMapping(value = "/{train_id}", consumes = "application/json")
-	public HttpStatus deleteTrain(@PathVariable int train_id) {
-		if(trainService.deleteTrainById(train_id))
+	public HttpStatus deleteProduct(@PathVariable int productId) {
+		if(productService.deleteProductById(productId))
 			return HttpStatus.OK;
 		return HttpStatus.NOT_FOUND;
 	}
@@ -74,4 +72,5 @@ public class TrainController {
 	public HttpStatus notFoundExceptionHandler() {
 		return HttpStatus.NOT_FOUND;
 	}
+	
 }
